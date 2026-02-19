@@ -26,7 +26,10 @@ We provide four mechanisms to interact with the Workbench:
 - Docker (local)
   - The Docker option can be useful for those that already have experience with Docker and containers, and are happy to do some manual configuration or wish to have more flexibility.
   - **Initial setup with docker is very straightfoward but can get complicated depending on your operating system!**
-- Manual local installation (local)
+- Manual local installation from conda-forge with Pixi (local)
+   - Installing all the requirements for development is one line and will create a fully reproducible environment.
+  - **Initial setup with conda packages from conda-forge and Pixi is very straightfoward and is operating system agnostic.**
+- Manual local installation with operating system specific tools (local)
   - Installing all the requirements manually on your local operating system is a longer process, but can be useful if you want to learn how to get an environment set up and will teach you more about the Workbench framework.
   - **If Docker and devcontainers are not suitable for you, installing things manually is a great option and still relatively quick to do!**
 - GitHub (online)
@@ -37,7 +40,7 @@ We provide four mechanisms to interact with the Workbench:
 
 ### Why would I want to install locally if all these other options exist?
 
-You can use the Workbench completely within devcontainers or Docker locally, or through GitHub using our templates.
+You can use the Workbench completely within devcontainers, Docker, or with [Pixi locally](#101-conda-forge), or through GitHub using our templates.
 
 However, we still would recommend working through the [local setup instructions](#101-manual) at least once as they can save you a lot of time during lesson development and debugging in future.
 
@@ -55,7 +58,7 @@ To use devcontainers you need:
 - An IDE that supports devcontainers: We recommend [VSCode](https://code.visualstudio.com/) as it has the most complete and easy to set up devcontainer support. 
   We acknowledge that VSCode is free but not completely open source.
 
-Please note, if you are not comfortable with using Docker or the Workbench, we recommend going through the [manual installation](#101-manual) steps below.
+Please note, if you are not comfortable with using Docker for the Workbench, we recommend going through the [manual installation](#101-manual) steps below.
 
 ### Starting up the devcontainer
 
@@ -210,6 +213,93 @@ Please continue with the [Test Your Installation](#install-test) instructions.
 More information and docker runtime options are described in the [Docker guide](docker.md) and [Workbench developer docker documentation](https://github.com/froggleston/workbench-dev/blob/frog-docker-update-1/docker.qmd).
 
 Please note, if you are not comfortable with Docker or the Workbench, we recommend going through the [manual installation steps](#101-manual) below.
+
+## Manual Local Installation from conda-forge {#101-conda-forge}
+
+:::::::::::::::::::: callout
+
+### Computing platform agnostic
+
+Installation from conda-forge is the same commands across all operating systems and computing architectures.
+
+::::::::::::::::::::::::::::
+
+All of the Workbench tools, and their dependencies, are packaged and distributed as built binaries in the form of conda packages on [conda-forge](https://conda-forge.org/) for Linux, macOS, and Windows.
+You can setup an environment for lesson development that includes all dependencies (including R) with the following.
+
+:::: group-tab
+
+### With Pixi (recommended)
+
+[Pixi](https://pixi.prefix.dev/) environments are fully reproducible by default.
+From the project directory, initialize a Pixi workspace
+
+```bash
+pixi init
+```
+
+and then add Git and the Workbench tool packages (`r-pegboard` is a dependency of `r-sandpaper`)
+
+```bash
+pixi add git r-varnish r-sandpaper
+```
+
+You can optionally activate a shell with the environment loaded with
+
+```bash
+pixi shell
+```
+
+or execute all commands from within the environment with
+
+```bash
+pixi run <commands>
+```
+
+### With Conda
+
+Create a [conda](https://docs.conda.io/) environment and install Git and The Workbench tool packages (`r-pegboard` is a dependency of `r-sandpaper`) from only the `conda-forge` channel
+
+```bash
+conda create --name workbench
+conda config --name workbench --add channels conda-forge
+conda config --name workbench --remove channels defaults
+conda install --name workbench git r-varnish r-sandpaper
+```
+
+and then activate the conda environment
+
+```bash
+conda activate workbench
+```
+
+::::
+
+### Test your installation
+
+To validate that you have all of the required tools installed in your environment
+
+:::: group-tab
+
+#### With Pixi (recommended)
+
+Run from the command line in the project directory
+
+```bash
+pixi list
+```
+
+#### With Conda
+
+Run from the command line
+
+```bash
+conda list --name workbench
+```
+
+::::
+
+and verify that `git`, `pandoc`, `r-base`, `r-pegboard`, `r-sandpaper`, `r-tinkr`, and `r-varnish` are listed.
 
 ## Manual Local Installation {#101-manual}
 
