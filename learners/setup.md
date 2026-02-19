@@ -283,6 +283,8 @@ Run from the command line in the project directory
 pixi list
 ```
 
+and verify that `git`, `pandoc`, `r-pegboard`, `r-sandpaper`, `r-tinkr`, and `r-varnish` are listed.
+
 #### With Conda
 
 Run from the command line
@@ -291,7 +293,7 @@ Run from the command line
 conda list --name workbench
 ```
 
-and verify that `git`, `pandoc`, `r-base`, `r-pegboard`, `r-sandpaper`, `r-tinkr`, and `r-varnish` are listed.
+and verify that `git`, `pandoc`, `r-pegboard`, `r-sandpaper`, `r-tinkr`, and `r-varnish` are listed.
 
 ## Manual Local Installation {#101-manual}
 
