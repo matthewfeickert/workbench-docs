@@ -227,8 +227,6 @@ Installation from conda-forge is the same commands across all operating systems 
 All of the Workbench tools, and their dependencies, are packaged and distributed as built binaries in the form of conda packages on [conda-forge](https://conda-forge.org/) for Linux, macOS, and Windows.
 You can setup an environment for lesson development that includes all dependencies (including R) with the following.
 
-:::: group-tab
-
 ### With Pixi (recommended)
 
 [Pixi](https://pixi.prefix.dev/) environments are fully reproducible by default.
@@ -273,13 +271,9 @@ and then activate the conda environment
 conda activate workbench
 ```
 
-::::
-
 ### Test your installation
 
 To validate that you have all of the required tools installed in your environment
-
-:::: group-tab
 
 #### With Pixi (recommended)
 
@@ -296,8 +290,6 @@ Run from the command line
 ```bash
 conda list --name workbench
 ```
-
-::::
 
 and verify that `git`, `pandoc`, `r-base`, `r-pegboard`, `r-sandpaper`, `r-tinkr`, and `r-varnish` are listed.
 
